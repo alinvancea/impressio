@@ -1,30 +1,17 @@
 /// <reference path="../../typings/index.d.ts" />
 
-import React = require('react');
-import ReactDOM = require('react-dom');
+import * as React  from 'react';
+import * as ReactDOM from 'react-dom';
 
-const root: HTMLElement = document.getElementById('app');
-
-module MainComponent {
-    export interface Props {
-
-    }
-}
-
-class MainComponent extends React.Component<MainComponent.Props, any> {
-    constructor(props: MainComponent.Props) {
-        super(props);
-    }
+export class MainComponent extends React.Component<{}, {}> {
 
     public render() {
         return (
-            <div className='Test'>
+            <div>
                 <p>Lorem ipsum</p>
             </div>
         );
     }
 }
 
-ReactDOM.render(<MainComponent />, root);
-
-export = MainComponent;
+ReactDOM.render(<MainComponent />, document.getElementById('app'));

@@ -1,12 +1,13 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
         "baseUrl": "src",
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": false,
-        "sourceMap": true,
-        "outDir": "dist",
+        "sourceMap": false,
+        "outDir": "./dist/", 
         "jsx": "react"
     },
     "exclude": [

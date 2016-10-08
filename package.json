@@ -2,7 +2,7 @@
   "name": "impressio",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/app.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,14 +14,18 @@
     "babel-preset-react": "^6.11.1",
     "grunt": "^1.0.1",
     "grunt-autoprefixer": "^3.0.4",
+    "grunt-browserify": "^5.0.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compass": "^1.1.1",
     "grunt-contrib-cssmin": "^1.0.2",
-    "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-cssc": "^0.2.6",
     "grunt-htmlhint": "^0.9.13",
+    "grunt-serve": "^0.1.6",
+    "grunt-ts": "^6.0.0-beta.3",
+    "grunt-tslint": "^3.2.1",
+    "requirejs": "^2.3.2",
     "typescript": "^2.0.3"
   },
   "dependencies": {
