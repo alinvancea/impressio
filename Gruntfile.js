@@ -3,14 +3,34 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    serve: {
+      default: {
+        options: {
+            port: 8080
+        }
+      }
+    },
     clean: {
       folder: 'dist/', 
       files: 'dist/MainComponent.js'
     },
-    serve: {
+    sass: {
+      dist: {
         options: {
-            port: 9000
+          style: 'compressed',
+          sourcemap: 'none'
+        },
+        files: {
+          'dist/app.css': 'src/components/MainComponent.scss'
         }
+      }
+    },
+    copy: {
+      main: {
+        expand: true,
+        src: 'src/static/*',
+        dest: 'dist/'
+      }
     },
     browserify: {
       main: {
@@ -49,6 +69,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   // Load the plugin that starts the static server
   grunt.loadNpmTasks('grunt-serve');
+  // Load the plugin that copies assets
+  grunt.loadNpmTasks('grunt-contrib-copy');
   // Load the plugin that provides tsx compiling
   grunt.loadNpmTasks("grunt-ts");
   // Load the plugin that probides support for 'require' directive
@@ -58,12 +80,12 @@ module.exports = function(grunt) {
   // Load the plugin that provides the "watch" task
   grunt.loadNpmTasks('grunt-contrib-watch');
   // Load the plugin that provides Sass compiling
-  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   // Load the plugin that probides TS validation
   grunt.loadNpmTasks("grunt-tslint");
   // Load the plugin that provides HTML validation
   grunt.loadNpmTasks('grunt-htmlhint');
-  // Load the plugin that enables autoprefixing
+  // Load the plugin that auto-inserts vendor prefixes
   grunt.loadNpmTasks('grunt-autoprefixer');
   // Load the plugin that optimizes CSS rule-lists
   grunt.loadNpmTasks('grunt-cssc');
@@ -71,7 +93,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Tasks
-  grunt.registerTask('dev', ['clean:folder', 'tslint', 'ts', 'browserify', 'tslint', 'clean:files']);
-  grunt.registerTask('prod', ['clean:folder', 'tslint', 'ts', 'browserify', 'tslint', 'uglify', 'clean:files']);
+  grunt.registerTask('server', ['serve']);
+  grunt.registerTask('dev', ['clean:folder', 'sass', 'tslint', 'ts', 'browserify', 'tslint', 'copy', 'clean:files']);
+  grunt.registerTask('prod', ['clean:folder', 'tslint', 'ts', 'browserify', 'tslint', 'uglify', 'copy', 'clean:files']);
 
 };
